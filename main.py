@@ -157,8 +157,8 @@ def _check_key(x_api_key: str | None) -> None:
         raise HTTPException(status_code=401, detail="Invalid or missing API key.")
 
 
-@app.get("/")
-@app.get("/health")
+@app.api_route("/", methods=["GET", "HEAD"])
+@app.api_route("/health", methods=["GET", "HEAD"])
 def health():
     """Health check. Also handy to 'warm up' a sleeping free-tier host before a demo."""
     return {"status": "ok", "service": "order-status-api"}
